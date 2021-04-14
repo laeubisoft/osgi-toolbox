@@ -3,5 +3,20 @@
    <feature id="de.laeubisoft.osgitools.feature">
       <category name="de.laeubisoft.osgitoolbox"/>
    </feature>
-   <category-def name="de.laeubisoft.osgitoolbox" label="OSGi Toolbox"/>
+   <feature id="org.osgi.test.junit5.feature">
+      <category name="org.osgi.test"/>
+   </feature>
+   <feature id="org.osgi.test.junit4.feature">
+      <category name="org.osgi.test"/>
+   </feature>
+   <category-def name="de.laeubisoft.osgitoolbox" label="OSGi Toolbox">
+      <description>
+         https://github.com/laeubisoft/osgi-toolbox
+      </description>
+   </category-def>
+   <category-def name="org.osgi.test" label="OSGi Testing Support">
+      <description>
+         https://github.com/osgi/osgi-test
+      </description>
+   </category-def>
 </site>
