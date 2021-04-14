@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="OSGi Toolbox Target">
+<locations>
+	<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+		<repository location="https://download.eclipse.org/releases/2021-03/"/>
+		<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
+	</location>
+	<location path="${eclipse_home}" type="Profile"/>
+</locations>
+</target>

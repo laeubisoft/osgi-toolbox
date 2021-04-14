@@ -1,12 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: OSGi Toolbox UI
-Bundle-SymbolicName: de.laeubisoft.osgitoolbox.ui
+Bundle-SymbolicName: de.laeubisoft.osgitoolbox.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.laeubisoft.osgitoolbox.ui.Activator
 Bundle-Vendor: Läubisoft GmbH
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.jdt.ui,
+ org.eclipse.jdt.core,
+ de.laeubisoft.osgitoolbox.core,
+ org.eclipse.pde.core;bundle-version="3.14.200",
+ org.eclipse.pde.ui;bundle-version="3.13.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: de.laeubisoft.osgitoolbox.ui
 Bundle-ActivationPolicy: lazy

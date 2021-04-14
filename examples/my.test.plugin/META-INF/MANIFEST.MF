@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Plugin
+Bundle-SymbolicName: my.test.plugin
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: my.test.plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-11

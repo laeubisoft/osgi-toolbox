@@ -1,8 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: OSGi Toolbox Core
-Bundle-SymbolicName: de.laeubisoft.osgitoolbox.core
+Bundle-SymbolicName: de.laeubisoft.osgitoolbox.core;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Läubisoft GmbH
 Automatic-Module-Name: de.laeubisoft.osgitoolbox.core
 Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.eclipse.jdt.core,
+ org.eclipse.core.runtime;bundle-version="3.20.100",
+ org.eclipse.pde.core,
+ org.eclipse.core.resources
+Export-Package: de.laeubisoft.osgitoolbox.core.container

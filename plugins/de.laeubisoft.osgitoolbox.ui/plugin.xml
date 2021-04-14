@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.jdt.ui.classpathContainerPage">
+      <classpathContainerPage
+            class="de.laeubisoft.osgitoolbox.ui.container.OSGiClasspathContainerPage"
+            id="de.laeubisoft.osgitoolbox.container.OSGi"
+            name="OSGi Dependencies">
+      </classpathContainerPage>
+   </extension>
+
+</plugin>
