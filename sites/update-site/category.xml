@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="de.laeubisoft.osgitools.feature">
+      <category name="de.laeubisoft.osgitoolbox"/>
+   </feature>
+   <category-def name="de.laeubisoft.osgitoolbox" label="OSGi Toolbox"/>
+</site>
