@@ -112,13 +112,19 @@ public class OSGiClasspathContainerPage extends WizardPage implements IClasspath
 
 	@Override
 	public IClasspathEntry getSelection() {
-		// TODO support version ranges...
-		return JavaCore.newContainerEntry(new Path(OSGiClasspathContainer.ID).append(selected.getFeature().getId()));
+		if (selected != null) {
+			// TODO support version ranges...
+			return JavaCore
+					.newContainerEntry(new Path(OSGiClasspathContainer.ID).append(selected.getFeature().getId()));
+		}
+		return null;
 	}
 
 	@Override
 	public void setSelection(IClasspathEntry containerEntry) {
-		selected = OSGiClasspathContainer.getModel(containerEntry.getPath());
+		if (containerEntry != null) {
+			selected = OSGiClasspathContainer.getModel(containerEntry.getPath());
+		}
 		setPageComplete(selected != null);
 		updateLabel();
 	}
