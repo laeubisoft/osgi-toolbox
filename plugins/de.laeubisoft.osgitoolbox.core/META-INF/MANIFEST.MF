@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OSGi Toolbox Core
+Bundle-SymbolicName: de.laeubisoft.osgitoolbox.core
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Läubisoft GmbH
+Automatic-Module-Name: de.laeubisoft.osgitoolbox.core
+Bundle-RequiredExecutionEnvironment: JavaSE-11
