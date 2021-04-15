@@ -10,8 +10,10 @@
 package de.laeubisoft.osgitoolbox.ui.container;
 
 import org.eclipse.core.runtime.Path;
+import org.eclipse.jdt.core.IClasspathAttribute;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.internal.core.ClasspathEntry;
 import org.eclipse.jdt.ui.wizards.IClasspathContainerPage;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
@@ -37,6 +39,8 @@ public class OSGiClasspathContainerPage extends WizardPage implements IClasspath
 
 	private Label label;
 	private IFeatureModel selected;
+	private boolean isTest;
+	private Button testDependecyButton;
 
 	public OSGiClasspathContainerPage() {
 		super("OSGiClasspathContainerPage");
@@ -51,7 +55,6 @@ public class OSGiClasspathContainerPage extends WizardPage implements IClasspath
 		composite.setLayout(new GridLayout(2, false));
 		label = new Label(composite, SWT.NONE);
 		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		updateLabel();
 		Button button = new Button(composite, SWT.PUSH);
 		button.setText("Select Feature ...");
 		// TODO support selection of version ranges...
@@ -68,6 +71,21 @@ public class OSGiClasspathContainerPage extends WizardPage implements IClasspath
 			}
 		};
 		button.addSelectionListener(listener);
+		testDependecyButton = new Button(composite, SWT.CHECK);
+		testDependecyButton.setText("Visible only for test sources");
+		testDependecyButton.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				isTest = testDependecyButton.getSelection();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+
+			}
+		});
+		updateUI();
 		setControl(composite);
 		if (selected == null) {
 			setPageComplete(false);
@@ -89,19 +107,22 @@ public class OSGiClasspathContainerPage extends WizardPage implements IClasspath
 			Object[] models = dialog.getResult();
 			for (Object object : models) {
 				selected = (IFeatureModel) object;
-				updateLabel();
+				updateUI();
 			}
 		}
 		setPageComplete(selected != null);
 	}
 
-	private void updateLabel() {
+	private void updateUI() {
 		if (label != null) {
 			if (selected == null) {
 				label.setText("Please choose a feature...");
 			} else {
 				label.setText(selected.getFeature().getFeature().getId());
 			}
+		}
+		if (testDependecyButton != null) {
+			testDependecyButton.setSelection(isTest);
 		}
 	}
 
@@ -114,8 +135,13 @@ public class OSGiClasspathContainerPage extends WizardPage implements IClasspath
 	public IClasspathEntry getSelection() {
 		if (selected != null) {
 			// TODO support version ranges...
-			return JavaCore
-					.newContainerEntry(new Path(OSGiClasspathContainer.ID).append(selected.getFeature().getId()));
+			IClasspathEntry entry = JavaCore
+					.newContainerEntry(new Path(OSGiClasspathContainer.ID).append(selected.getFeature().getId()),
+							ClasspathEntry.NO_ACCESS_RULES,
+							new IClasspathAttribute[] {
+									JavaCore.newClasspathAttribute(IClasspathAttribute.TEST, String.valueOf(isTest)) },
+							false);
+			return entry;
 		}
 		return null;
 	}
@@ -124,9 +150,10 @@ public class OSGiClasspathContainerPage extends WizardPage implements IClasspath
 	public void setSelection(IClasspathEntry containerEntry) {
 		if (containerEntry != null) {
 			selected = OSGiClasspathContainer.getModel(containerEntry.getPath());
+			isTest = containerEntry.isTest();
 		}
 		setPageComplete(selected != null);
-		updateLabel();
+		updateUI();
 	}
 
 }
